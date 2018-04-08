@@ -1,0 +1,34 @@
+{% set home = salt['pillar.get']('sshjail:home', '/home/jails') %}
+{% set directories = salt['pillar.get']('sshjail:directories') %}
+{% set dev_nodes = salt['pillar.get']('sshjail:dev_nodes', {}).iteritems() %}
+{% set users = salt['pillar.get']('sshjail:users', {}).iteritems() %}
+{% set exec_files = salt['pillar.get']('sshjail:exec_files') %}
+{% set packages  = salt['pillar.get']('sshjail:packages') %}
+{% set source_dir  = salt['pillar.get']('sshjail:lsyncd:source_dir') %}
+{% set remote_host  = salt['pillar.get']('sshjail:lsyncd:remote_host') %}
+{% set remote_dir  = salt['pillar.get']('sshjail:lsyncd:remote_dir') %}
+{% set delay  = salt['pillar.get']('sshjail:lsyncd:delay') %}
+{% set bw_limit  = salt['pillar.get']('sshjail:lsyncd:bw_limit') %}
+{% set lsyncd_home  = salt['pillar.get']('sshjail:lsyncd:home') %}
+{% set lsyncd_delete  = salt['pillar.get']('sshjail:lsyncd:delete') %}
+{% set lsyncd_source = salt['pillar.get']('sshjail:lsyncd:source') %}
+{% set lsyncd_hash = salt['pillar.get']('sshjail:lsyncd:hash') %}
+{% set key_path  = salt['pillar.get']('sshjail:lsyncd:key_path') %}
+{% set lsyncd_user  = salt['pillar.get']('sshjail:lsyncd:lsyncd_user') %}
+{% set group_config = salt['pillar.get']('sshjail:jail_group', {}).iteritems() %}
+{% set group = salt['pillar.get']('sshjail:jail_group:name', 'jailed') %}
+
+{% if salt['pillar.get']('sshjail:samba:override_user') %}
+{% set samba_user = salt['pillar.get']('sshjail:samba:override_user') %}
+{% endif %}
+
+{% if salt['pillar.get']('sshjail:samba:override_group') %}
+{% set samba_group = salt['pillar.get']('sshjail:samba:override_group') %}
+{% endif %}
+
+{% if salt['pillar.get']('sshjail:samba:override_path') %}
+{% set samba_path = salt['pillar.get']('sshjail:samba:override_path') %}
+{% endif %}
+
+
+

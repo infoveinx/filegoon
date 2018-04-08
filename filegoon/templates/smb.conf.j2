@@ -1,0 +1,14 @@
+
+### Managed by Salt
+[{{ samba_path }}]
+   path={{ jail_home }} 
+   read only=no
+   mangled names=no
+   browseable=yes
+   force group = {{ samba_group }}
+   valid users = @{{ samba_user }}
+   create mask = 0664
+   force create mode = 0664
+   directory mask = 02775
+   force directory mode = 02775
+

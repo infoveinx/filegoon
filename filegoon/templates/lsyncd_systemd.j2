@@ -1,0 +1,13 @@
+[Unit]
+Description=Lsyncd Service for user {{ lsyncd_user }}
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=forking
+Restart=always
+User={{ lsyncd_user }}
+Group={{ lsyncd_user }}
+ExecStart={{ lsyncd_home }}/bin/lsyncd {{ lsyncd_home }}/etc/lsyncd.conf.{{ lsyncd_user }}.lua
+Restart=on-failure

@@ -1,0 +1,65 @@
+sshjail:
+  packages:
+    - liblua5.2-0
+    - rsync
+    - samba
+
+  directories:
+    - bin
+    - dev
+    - lib 
+    - lib64
+    - etc
+    - home
+
+  dev_nodes:
+    'null':
+      ntype: c
+      major: 1
+      minor: 3
+    tty:
+      ntype: c
+      major: 5
+      minor: 0
+    zero:
+      ntype: c
+      major: 1
+      minor: 5
+    random:
+      ntype: c
+      major: 1
+      minor: 8
+
+  exec_files:
+    - /bin/date
+
+  jail_group:
+    name: jailed
+    gid: 2499
+
+  lsyncd:
+    home: /opt/lsyncd
+    delete: false
+    source: http://example.com/files/lsyncd-2.2.2-debian-x86-64
+    hash:
+
+  samba:
+    override_user: 
+    override_group: 
+    override_path: filesync
+
+  users:
+    filegoon:
+      config:
+        uid: 2500
+        home: /home/filegoon
+        ssh-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC3JghgwAy71M8dFRBeoDfM+ywHb5/7pmFT5MVqBosk7/+DTK0OFDMdKGOmKeA3v6bjJXIlwJD8UpEXEl0sZaA2qnZBlyGb3lEterljuBmJDqHq8mbdpVbpBTRpVcTbpygkSGnhDlUdW9uHB3eWsevWhGYDcr1cdWqhsMLtpMHRgiM+8BSk6B6e4r2e0fQToQQyPBUP3TWQ7Q/bCXujv8CS8eEInz5OmyggoQ8jKGW6EwUh3TpZjLyD4wXUeuiU0NQHbHNEYO/ILh5zjbS7R+TAn16qgTo69FUUHV4dM7jEXxxRo15yYsI4o4beTuH2jDb6SF7Gzmsg+pmT702PhEQVvFwzXnchBKGqFcIXGGzgGIf0GTB6Ndt9cf0MWtF0g4uV1rYf2Mp7UY4Q8RC6ywsaPmJ1ZMAGaK623oY5Yy6MlnuQW/iNdvbXK0cknjJBUelUH69oRm6E39tiZVwI8wtahJ58nLJnaWC7AEetXzDldYORr92XhIoxf7eCIl/hgyAbtf+T1Cd8Jgi0UBnZkKhM821VPQI50yWAgvM2hGEqXwJsAefadtuwfyXpiyB2LyJFSgSovlwLEpTwPsjrfd1a9+HEJe971LCAbbtejzCBPKjs3pLMZX+3kLpSkATf1nqmZqkNaP8i/IS5KxRaYEkcgKvwmahmVK+UvpeDZVD7Cw== example
+      lsyncd:
+        source_dir: /home/filegoon/files/outbound
+        remote_host: 
+        remote_dir: files/inbound
+        delay: 30
+        bw_limit: 1500
+        key_path: /home/filegoon/.ssh/id_rsa
+

@@ -1,0 +1,27 @@
+-- Managed by Salt
+settings {
+  statusFile = "/tmp/lsyncd.{{ user }}.stat",
+  logfile = "/tmp/lsyncd.{{ user }}.log",
+  statusInterval = 1
+}
+
+sync {
+  default.rsyncssh,
+  source = "{{ source_dir }}",
+  host = "{{ remote_host }}",
+  targetdir = "{{ remote_dir }}",
+  delay = {{ delay }},
+  {% if not delete_flag -%}
+  delete = false,
+  {% endif -%}
+  rsync = {
+    _extra = {"--bwlimit={{ bw_limit }}"},
+    {% if samba_group is defined -%}
+    perms = true,
+    chmod = "u+rw,g+rw,Dg+ws"
+    {%- endif %}
+  },
+  ssh = {
+    identityFile = '{{ key_path }}'
+  }
+}
