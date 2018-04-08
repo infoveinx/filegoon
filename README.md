@@ -2,7 +2,7 @@
 ---
 
 ## Requirements
-* [Saltstack](Saltstack)
+* [Saltstack](https://saltstack.com/)
 * [Lsyncd](https://github.com/axkibe/lsyncd)
 * OpenSSH
 * Rsync
